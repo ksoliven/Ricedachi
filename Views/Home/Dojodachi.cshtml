@@ -1,0 +1,96 @@
+@using Dojodachi.Models;
+@model Dachi;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ricedachi</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    .wrapper{
+        margin-left: 500px;
+        text-align: center;
+        align-content: center;
+        height: 500px;
+        width: 500px;
+    }
+    .middle_wrapper{
+        text-align: center;
+        align-content: center;
+    }
+    button{
+        display: inline-block;
+        width: 85px;
+    }
+    p{
+        display: inline-block;
+    }
+    img{
+        width:350px;
+        height: 350px;
+    }
+    .small{
+        display: inline-block;
+        align-text: center;
+        margin-left: 25px;
+        width: 75px;
+        height: 75px; 
+    }
+</style>
+</head>
+<body>
+    <div class = wrapper>
+    <div class = "middle_wrapper">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Ricedachi</h1>
+        <div class="small">
+        <p class="lead">Fullness: @ViewBag.DachiInfo.Fullness</p>
+        </div>
+        <div class="small">
+        <p class="lead">Happiness: @ViewBag.DachiInfo.Happiness</p>
+        </div>
+        <div class="small">
+        <p class="lead">Meals: @ViewBag.DachiInfo.Meals</p>
+        </div>
+        <div class="small">
+        <p class="lead">Energy: @ViewBag.DachiInfo.Energy</p>
+        </div>
+        <br>
+        <br>  
+        @{
+            if(ViewBag.DachiInfo.Status == 1 && ViewBag.DachiInfo.Happiness > 15 && ViewBag.DachiInfo.Energy > 15 && ViewBag.DachiInfo.Fullness > 15){
+            <img src="~/img/rice.jpg" alt="happy">
+            }
+            else if(ViewBag.DachiInfo.Status == 0)
+            {
+            <img src="~/img/deadrice.jpg" alt="dead">
+            }
+            else if(ViewBag.DachiInfo.Status == 1)
+            {
+            <img src="~/img/haterice.jpg" alt="angry">
+            }
+        } 
+        <br>
+        <br>
+        <p class="lead">@ViewBag.DachiInfo.message</p>
+        <br>
+    @if (ViewBag.DachiInfo.Status == 1)
+            {
+                <a class="btn" href="/feed">Feed</a>
+                <a class="btn" href="/play">Play</a>
+                <a class="btn" href="/work">Work</a>
+                <a class="btn" href="/sleep">Sleep</a>
+            } else {
+                <a class="btn" href="/reset">Restart?</a>
+            }
+        </div>
+    </div>
+    </div>
+</body>
+</html>
